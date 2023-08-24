@@ -30,7 +30,7 @@ configure do
 	(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		created_date DATE,
-		contend TEXT
+		content TEXT
 	)'
 
 end
@@ -58,6 +58,8 @@ post '/new' do
   	@error = 'Type TEXT'
   	return erb :new
   end 	 	 
+
+  @db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
 
   erb "You typed: #{content}"
 end
