@@ -36,6 +36,10 @@ configure do
 end
 
 get '/' do
+	# выводим список постов из БД
+
+	@results = @db.execute 'select * from Posts order by id desc' 
+
 	erb :index			
 end
 
@@ -43,10 +47,6 @@ end
 # браузер получает страницу с сервера
 
 get '/new' do
-	# выводим список постов из БД
-
-	@results = @db.execute 'select * from Posts order by id desc' 
-
 
   erb :new
 end

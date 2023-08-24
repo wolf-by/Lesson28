@@ -1,1 +1,10 @@
 <h3>Later Posts:</h3>
+<br />
+<% @results.each do |post| %>
+<p>
+<%= post['content'] %>	
+</p>
+Add to <%= post['created_date'] %>
+<hr />
+
+<% end %>
