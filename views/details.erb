@@ -7,6 +7,15 @@
 Add to <%= @row['created_date'] %>
 <br />
 
+<h4>Comments:</h4>
+
+<% @comments.each do |comment| %>
+<p>
+	<%= comment['content'] %><br />
+	<span style="font-size: 75%; color: #999;">Add to <%= comment['created_date'] %></span>
+</p>
+<hr />
+<% end %>
 <hr />
 <form action="/details/<%= @row['id'] %>" method="POST">
 <div class="form-floating">
