@@ -30,7 +30,8 @@ configure do
 	(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		created_date DATE,
-		content TEXT
+		content TEXT,
+		autor TEXT
 	)'
 
 	#создает таблицу если она не существует - if not exists 
@@ -71,11 +72,18 @@ post '/new' do
   if content.length <= 0
   	@error = 'Type TEXT'
   	return erb :new
-  end 	 	 
+  end 	 
+
+  autor = params[:autor]
+  
+  if autor.length <= 0
+  	@error = 'Type TEXT'
+  	return erb :new
+  end 		 
 
   # сохранение данных в БД
 
-  @db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
+  @db.execute 'insert into Posts (content, created_date, autor) values (?, datetime(),?)', [content], [autor]
 
   redirect to '/'
 end
@@ -86,6 +94,7 @@ get '/details/:post_id' do
 	# получаем переменную url
 	post_id = params[:post_id]
 
+	
 	# получаем список постов 
 	# у нас будет только один пост
 	results = @db.execute 'select * from Posts where id = ?', [post_id]
@@ -110,6 +119,11 @@ post '/details/:post_id' do
 
 # получаем переменную из post-запроса	
   content = params[:content]
+
+  if content.length <= 0
+  	@error = 'Type TEXT'
+  	return erb ('/details/' + post_id)
+  end 
 
   # сохранение данных в БД
 

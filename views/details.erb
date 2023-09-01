@@ -4,7 +4,8 @@
 <p>
 <%= @row['content'] %>	
 </p>
-Add to <%= @row['created_date'] %>
+Add to <%= @row['created_date'] %><br />
+
 <br />
 
 <h4>Comments:</h4>
@@ -12,11 +13,14 @@ Add to <%= @row['created_date'] %>
 <% @comments.each do |comment| %>
 <p>
 	<%= comment['content'] %><br />
-	<span style="font-size: 75%; color: #999;">Add to <%= comment['created_date'] %></span>
+	<span style="font-size: 75%; color: #999;">
+		Add to <%= comment['created_date'] %></span>
+	</span>
+
 </p>
 <hr />
 <% end %>
-<hr />
+
 <form action="/details/<%= @row['id'] %>" method="POST">
 <div class="form-floating">
   <textarea name="content" class="form-control" placeholder="Type post text here" id="floatingTextarea"></textarea>

@@ -4,7 +4,8 @@
 <p>
 <%= post['content'] %>	
 </p>
-Add to <%= post['created_date'] %>
+<span style="font-size: 75%; color: #999;">Add to <%= post['created_date'] %><br />
+Autor: <%= post['autor'] %></span>
 <br />
 <a href="/details/<%= post['id'] %>">Comments</a>
 

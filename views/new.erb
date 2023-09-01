@@ -1,6 +1,10 @@
 <h3>Add New Post</h3>
 
-<form action="/new" method="POST">
+<form action="/new" method="POST">  
+<div class="form-floating mb-3">
+  <input name="autor" class="form-control" id="floatingInput" placeholder="Name autor">
+  <label for="floatingInput">Name autor</label>
+</div>
 <div class="form-floating">
   <textarea name="content" class="form-control" placeholder="Type post text here" id="floatingTextarea"></textarea>
   <label for="floatingTextarea">Send Post</label>
